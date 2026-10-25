@@ -1,7 +1,19 @@
 /*
-  This file is licensed under the BSD license.
-  This program controls an arduino that represents a Transport Delay Measurement System (TDMS). It is connected to two pho*/
-
+  This program is open sourced under the MIT license.
+  This program represents a flight simulator transport delay measurement system (TDMS). 
+  The TDMS session starts when the pilot moves the column, represented by a joystick's 
+  Y-axis read on pin 16 (A2). This marks the beginning timestamp of the test.
+  The TMDS then monitors the MPU-6050 accelerometer (SCL=A5, SDA=A4) attached 
+  to the motion system. Rotational acceleration about the Z-axis is monitored.
+  This event indicates the motion system has moved.
+  It also monitors the analog volatges accross the resistors for the avionics
+  display photodiode and IG display photodiode (A1 and A0, respectively).
+  When each event occurs, a timestamp for that event is saved.
+  Once all three events have occurred, a TMDS report is generated. The 
+  transport delay is the longest of the three chains.
+  If all three events do not occur within 5 seconds of the intitial pilot
+  input event, the system will timeout and reset.
+*/
 
 #include <Adafruit_MPU6050.h>
 #include <Adafruit_Sensor.h>

@@ -1,6 +1,11 @@
 /*
-  This program is open sourced under the BSD license.
-  This program represents a flight simulator. When the pilot moves the column, read on pin 15 (A1), the arduino writes a PWM signal to the motion system (a servo) on 
+  This program is open sourced under the MIT license.
+  This program represents a flight simulator. When the pilot moves the column, 
+  represented by a joystick's Y-axis read on pin 15 (A1), after 5 ms, the arduino 
+  writes a PWM signal to the motion system (a servo) on pin 6. After another 5ms,
+  the avionics display LED is turned on on pin 2, and 5 ms later the IG LED is
+  turned on on pin 3. The system then waits for 5 seconds and resets for another
+  test session.
 */
 
 
